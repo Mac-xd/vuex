@@ -1,0 +1,74 @@
+模块化：
+    优点：
+        1、集中管理
+        2、易于维护，版本迭代，调试
+        3、可以很容易的JS和JS文件交互
+        4、避免环境污染
+        5、多人协作开发
+        6、模块之间可以自由组合
+        7、偏向于工程化（让项目的目录结构、语义化等等更正规化）
+        8、减少HTTP请求，减轻服务器压力
+        9、易于测试（测试人员）
+    缺点：
+        1、执行链较长，影响性能
+
+相对路径：文件名查找
+    如果找到共有一次，以后无需再去查找
+    var a = require('aaa.js);
+    绝对路径：一级一级找
+    var b = require('./ES6Module/aaa.js)
+
+CommonJS、AMD、CMD、ES6Module
+
+CommonJS规范：
+    代表着：Node.js、RequireJS
+    特点：
+        1、按需加载
+        2、同步
+        3、在Node环境运行，不能再浏览器内运行
+
+    语法：
+        引入：var a = require('路径')
+            a:{} 
+        暴露一个模块：module.exports ={}
+    
+AMD规范：
+    代表着：RequireJS
+    特点：
+     1、异步加载
+     2、依赖前置
+     3、全部加载（提前加载）
+     4、浏览器支持的规范（一直用的是AMD和CMD）layui-AMD规范写的UI框架
+    语法：
+        页面中：必须制定一个入口文件，一般叫做main.js
+        <script data-main='./main.js' src="./require.js"></script>
+        引入：define(['a.js','b.js'],function(a,b){})
+             requirejs require也可以引入模块
+        暴露一个模块：
+            define(function(){
+                通过return暴露变量
+                return {}
+            })
+
+CMD规范:
+    代表着： SeaJS
+    特点：
+        1、没有依赖前置
+        2、遵循CommonJS暴露的规范
+        3、按需加载
+        4、就近原则 （哪里需要使用某个方法，就在哪里require）
+        5、异步加载
+
+    引入入口文件：
+        seajs.use(['路径'],function(变量){})
+    模块之间引入：
+        define(function(require,exports,mudule){})
+        通过require去引入
+    暴露一个模块：module.exports = {}  :CommonJS暴露方式
+
+    页面： 
+     <script src="./sea.js"></script>
+     <script src="./main.js"></script>
+
+
+
